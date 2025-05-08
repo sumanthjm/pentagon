@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Attribute Selectors</title>
+  <style>
+    /* Select elements with a title attribute */
+    [title] {
+      color: blue;
+      font-weight: bold;
+    }
+
+    /* Select elements with an exact attribute value */
+    [type="text"] {
+      border: 2px solid green;
+    }
+
+    /* Select elements whose attribute starts with "https" */
+    [href^="https"] {
+      color: red;
+    }
+
+    /* Select elements whose attribute ends with ".jpg" */
+    [src$=".jpg"] {
+      border: 3px solid orange;
+    }
+
+    /* Select elements containing "example" in the attribute */
+    [class*="example"] {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 title="Heading Title">This heading has a title attribute</h2>
+  
+  <input type="text" placeholder="Text Input">
+  <input type="password" placeholder="Password Input">
+
+  <a href="https://example.com">External Link</a>
+  <a href="http://example.com">Normal Link</a>
+
+  <img src="photo.jpg" alt="Sample Image">
+  <img src="image.png" alt="Another Image">
+
+  <p class="example-text">This paragraph uses a class containing 'example'.</p>
+
+</body>
+</html>

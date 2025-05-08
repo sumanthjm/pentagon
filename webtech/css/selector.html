@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors and Pseudo Elements</title>
+  <style>
+    /* Universal selector */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Type selector */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+
+    h1 {
+      color: darkblue;
+    }
+
+    p {
+      color: #333;
+    }
+
+    /* Class selector */
+    .highlight {
+      background-color: yellow;
+      padding: 5px;
+      border: 1px solid orange;
+    }
+
+    /* ID selector */
+    #main-title {
+      text-align: center;
+      font-size: 2em;
+    }
+
+    /* Dynamic pseudo-class selectors */
+    a:link {
+      color: rgb(255, 0, 0);
+    }
+
+    a:visited {
+      color: purple;
+    }
+
+    a:hover {
+      background-color: yellow;
+    }
+
+    a {
+      background-color: black;
+      color: white;
+      padding: 5px;
+      text-decoration: none;
+    }
+
+    a:active {
+      background-color: red;
+    }
+
+    /* Structural pseudo-class selectors */
+    li:first-child {
+      font-weight: bold;
+    }
+
+    li:last-child {
+      color: red;
+    }
+
+    p:first-of-type {
+      font-style: italic;
+    }
+
+    p:last-of-type {
+      text-decoration: underline;
+    }
+
+    li:nth-child(2) {
+      background-color: rgb(250, 9, 9);
+    }
+
+    /* Pseudo-elements */
+    p::after {
+      content: " [End]";
+      color: red;
+    }
+
+    h1::before {
+      content: "★ ";
+      color: gold;
+    }
+
+    p::first-letter {
+      font-size: 2em;
+      color: blue;
+    }
+
+    p::first-line {
+      font-weight: bold;
+    }
+
+    li::marker {
+      color: red;
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="main-title">Welcome to CSS Selectors and Pseudo Elements</h1>
+
+  <p>This paragraph is styled using a type selector.</p>
+
+  <div class="highlight">This div is styled using a class selector.</div>
+
+  <p class="highlight">This paragraph uses both type and class selectors.</p>
+
+  <h2>Dynamic Pseudo-class: Link States</h2>
+  <a href="https://www.example.com">Visit This Link</a><br><br>
+
+  <h2>Structural Pseudo-class: List</h2>
+  <ul>
+    <li>First Item</li>
+    <li>Second Item</li>
+    <li>Third Item</li>
+  </ul>
+
+  <h2>Structural Pseudo-class: Paragraphs</h2>
+  <p>This is the first paragraph.</p>
+  <p>This is the second paragraph.</p>
+
+</body>
+</html>
