@@ -43,7 +43,7 @@
 //     public static void main(String[] args) {
 //         System.out.println("enter the size of an array ");
 //         Scanner sc=new Scanner(System.in);
-//         int n,i,check=0,sum,count=0,che;
+//         int n,i,check=0,sum,count=0,che,finalsum=0;
 //         n=sc.nextInt();
 //         int[] a=new int[n];
 //         System.out.println("enter the values for arrays ");
@@ -68,12 +68,17 @@
 //                {
 //                 count++;
 //                 System.out.println(" prime number are "+(check-1));
+//                 finalsum=finalsum+(check-1);
 //                }
         
 //     }
+
 //         if (count==0) 
 //         {
 //             System.out.println("there is no prime  number exist ");
+//         }
+//         else{
+//             System.out.println("sum of prime numbers =="+finalsum);
 //         }
         
 //     }
