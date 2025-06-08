@@ -75,6 +75,7 @@
 
     p:first-of-type {
       font-style: italic;
+      color: aqua;
     }
 
     p:last-of-type {
@@ -106,8 +107,12 @@
     }
 
     li::marker {
-      color: red;
+      color: rgb(26, 58, 123);
       font-size: 1.5em;
+    }
+    ::selection{
+      background: rgb(212, 7, 7);
+      color: rgb(0, 0, 0);
     }
   </style>
 </head>
@@ -129,11 +134,15 @@
     <li>First Item</li>
     <li>Second Item</li>
     <li>Third Item</li>
+    <li>okok</li>
+    <li>koko</li>
   </ul>
 
   <h2>Structural Pseudo-class: Paragraphs</h2>
   <p>This is the first paragraph.</p>
   <p>This is the second paragraph.</p>
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, earum. Quaerat tempore voluptas, laborum consequatur, quia inventore dolor necessitatibus ullam sequi ipsum in officiis asperiores at nulla sint, alias itaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, earum. Quaerat tempore voluptas, laborum consequatur, quia inventore dolor necessitatibus ullam sequi ipsum in officiis asperiores at nulla sint, alias itaque.</p>
 
 </body>
 </html>

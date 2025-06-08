@@ -21,11 +21,20 @@
             font-weight: bold;
         }
         .color-name { background-color: red; }
-        .rgb { background-color: rgb(255, 100, 100); }
-        .rgba { background-color: rgba(255, 100, 100, 0.5); }
-        .hex { background-color: #ff5733; }
-        .hsl { background-color: hsl(0, 100%, 50%); }
+        .rgb { background-color: rgb(0, 255, 255); }
+        .rgba { background-color: rgba(255, 100, 100, 1); }
+        .hex { background-color: #ff00ff; }
+        .hsl { background-color: hsl(180, 100%, 90%); }
         .hsla { background-color: hsla(0, 100%, 50%, 0.5); }
+        .back{
+            background-color: #ff00ff;
+            background-image: url("c5fa937a24121078093603e546d0624b (1)");
+        }
+
+        .gradiant{
+            background-image: radial-gradient(ellipse,red,blue);
+            height: 600px;
+        }
     </style>
 </head>
 <body>
@@ -36,5 +45,9 @@
     <div class="color-box hex">Hex Code</div>
     <div class="color-box hsl">HSL</div>
     <div class="color-box hsla">HSLA</div>
+    <div class="back">helo</div>
+
+    <div class="gradiant">gradient</div>
+    
 </body>
 </html>

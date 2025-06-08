@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+    <form>
+        <label>FullName</label>
+        <input type="text" maxlength="20" pattern="[a-zA-Z]+">(max 20 char a-z and A-Z)<br><br>
+
+        <label>Lastname</label>
+        <input type="text" maxlength="20" pattern="[a-zA-Z]+">(max 20 char a-z and A-Z)<br><br>
+
+        <label><b>Date of Birth</b></label>
+        <input type="date"><br><br>
+
+        <label>GENDER</label>
+        <input type="radio" name="gender">male
+        <input type="radio" name="gender">female<br><br>
+
+        <label>EMAIL ID</label>
+        <input type="email"><br><br>
+        
+        <label>MOBILE NO</label>
+        <input type="text"><br><br>
+
+        <label>ADDRESS</label><br>
+        <textarea rows="5" cols="30"></textarea><br><br>
+
+        <label>CITY</label>
+        <input type="text"><br><br>
+
+        <label>PINCODE</label>
+        <input type="text" pattern="\d{6}">(6 digit number)<br><br>
+
+        <label>EMAIL ID</label>
+        <input type="email"><br><br>
+
+        <label>STATE</label>
+        <input type="text"><br><br>
+
+        <label>COUNTRY</label>
+        <input type="text"><br><br>
+
+        <label>HOBBIES</label>
+        <input type="checkbox">Drawing
+        <input type="checkbox">Singing
+        <input type="checkbox">Dancing
+        <input type="checkbox">Other <input type="text"><br><br>
+
+        <label>Qualification</label><br>
+        <table border="1">
+            <tr>
+                <th>sl.no</th>
+                <th>Examination</th>
+                <th>Board</th>
+                <th>Percentage</th>
+                <th>Year of pass</th>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>03</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>04</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table><br>
+    
+        <label>COURSES APPLIED FOR</label><br>
+        <input type="checkbox">BCA
+        <input type="checkbox">B.com
+        <input type="checkbox">B.sc
+        <input type="checkbox">B.A<br><br>
+
+        <input type="submit" value="submit">
+        <input type="reset" value="reset">
+    </form>
+</body>
+</html>

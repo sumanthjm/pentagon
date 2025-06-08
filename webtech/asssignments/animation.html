@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height:300px;
+            width:300px;
+            position:relative;
+            background-color: black;
+            /* border-radius: 200px; */
+            animation-name: movingbox;
+            animation-duration: 3s;
+            animation-delay: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
+        @keyframes movingbox{
+            0%{
+                background-color: aqua;
+                top:0px;
+                left:0px;
+            }
+            25%{
+                background-color: brown;
+                top:0px;
+                left:300px;
+            }
+            50%{
+                background-color: goldenrod;
+                top:300px;
+                left:300px;
+            }
+            75%{
+                background-color: green;
+                top: 300px;
+                left: 0px;
+            }
+            100%{
+                background-color: cadetblue;
+                top:0px;
+                left:0px;
+           }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

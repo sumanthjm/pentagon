@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            display: none;
+        }
+        #navbar {
+            height: 100px;
+            background-color: powderblue;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        ol {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+    
+        }
+        @media screen and (max-width: 400px) {
+            #navbar {
+                background-color: lightgray;
+            }
+            ol {
+                display: none;
+            }
+            img {
+                display: block;
+            }
+            @media screen and (min-width: 401px) and (max-width: 600px) {
+               #navbar {
+                background-color: green;
+               } 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <img
+            height="100px"
+            width="100px"
+            src="https://tse2.mm.bing.net/th/id/OIP.9iqmLHFdU0M8TLrTZ5mSWwHaHa?r=0&rs=1&pid=ImgDetMain"
+            alt=""
+        />
+        <ol>
+            <li><a href="">HOME</a></li>
+            <li><a href="">ABOUT</a></A></li>
+            <li><a href="">LOGIN</a></li>
+            <li><a href="">PROFILE</a></li>
+            <li><a href="">SIGNUP</a></li>
+            <li><a href="">HELP</a></li>
+            </ol>
+
+       
+
+    </div>
+    
+</body>
+</html>

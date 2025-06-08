@@ -1,0 +1,181 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8e9e9;
+    margin: 0;
+    
+}
+ /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      border-bottom: 1px solid #ddd;
+      background-color: #fff;
+      height: 50px;
+    }
+
+    .logo {
+      font-size: 45px;
+      font-weight: bold;
+      color: #510b51;
+      /* border: 2px solid #000; */
+      border-radius: 4px;
+      padding: 0px 0px;
+      
+    }
+
+    .search-bar {
+      flex: 1;
+      margin: 0 30px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 85%;
+      padding: 10px 15px 10px 40px;
+      border: 1px solid #323030;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #0f0e0e;
+      height: 30px;
+    }
+
+    .search-bar::before {
+      content: '';
+      background: url('https://cdn-icons-png.flaticon.com/512/54/54481.png') no-repeat center;
+      background-size: 18px;
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-right a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #171717;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+.promo-section {
+    text-align: center;
+    
+    border-radius: 20px;
+    
+}
+
+.promo-items {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.loginimg{
+    padding-top: 30px;
+    border-radius: 20px ;
+}
+.loginimg2{
+
+    border-radius: 20px ;
+}
+/* .promo-section2 {
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    position: static;
+} */
+.promo-section2 {
+    position: relative; /* Ensure the white container is the reference for absolute positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+        /* .signup-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position:relative;
+            align-items: center;
+        } */
+         .signup-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    width: 400px;
+    position: absolute; /* Position inside promo-section2 */
+    top: 65%; /* Move the box inside the container */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Perfect centering */
+    align-items: center;
+}
+        .signup-container h1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .signup-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .signup-container .country-code {
+            display: inline-block;
+            width: 50px;
+            text-align: left;
+        }
+        .signup-container .phone-number {
+            display: inline-block;
+            width: calc(100% - 60px);
+            text-align: center;
+            
+        }
+        .signup-container button {
+            background-color: #8e24aa;
+            color: white;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 400px;
+            align-items: center;
+        }
+        .signup-container button:hover {
+            background-color: #7b1fa2;
+        }
+        .signup-container .terms {
+            font-size: 12px;
+            color: #777;
+            margin-top: 70px;
+        }
+        .signup-container .terms a {
+            color: #8e24aa;
+            text-decoration: none;
+        }
+        .signup-container .terms a:hover {
+            text-decoration: underline;
+        } 
+.spann{
+    color: #393535;
+    font-size: 13px;
+}
+.spann2{
+    color: #393535;
+    font-size: 16px;
+    /* border-bottom: 1px solid black; */
+    padding: 7px;
+}
