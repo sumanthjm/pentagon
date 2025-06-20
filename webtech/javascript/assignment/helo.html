@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Basics Demo</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: linear-gradient(to right, #f0f0f0, #d9e4f5);
+    }
+    h2 {
+      color: #2a2a2a;
+    }
+    pre {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 5px gray;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💻 JavaScript Basics (Internal Script)</h1>
+
+  <h2>1. Operators</h2>
+  <pre id="operatorsOutput"></pre>
+
+  <h2>2. Conditional Statements</h2>
+  <pre id="conditionalsOutput"></pre>
+
+  <h2>3. Looping Statements</h2>
+  <pre id="loopsOutput"></pre>
+
+  <script>
+    // 1. Operators
+    let a = 10, b = 3;
+    let operatorsResult = "";
+    operatorsResult += `a = ${a}, b = ${b}\n`;
+    operatorsResult += `Addition: a + b = ${a + b}\n`;
+    operatorsResult += `Subtraction: a - b = ${a - b}\n`;
+    operatorsResult += `Multiplication: a * b = ${a * b}\n`;
+    operatorsResult += `Division: a / b = ${a / b}\n`;
+    operatorsResult += `Modulus: a % b = ${a % b}\n`;
+    operatorsResult += `Increment: a++ = ${a++}\n`;
+    operatorsResult += `Decrement: --b = ${--b}\n`;
+    document.getElementById("operatorsOutput").textContent = operatorsResult;
+
+    // 2. Conditional Statements
+    let x = 20;
+    let conditionalsResult = `x = ${x}\n`;
+    if (x > 30) {
+      conditionalsResult += "x is greater than 30\n";
+    } else if (x > 10) {
+      conditionalsResult += "x is greater than 10 but not greater than 30\n";
+    } else {
+      conditionalsResult += "x is 10 or less\n";
+    }
+
+    let day = 3;
+    conditionalsResult += `\nSwitch example (day = ${day}):\n`;
+    switch(day) {
+      case 1: conditionalsResult += "Monday\n"; break;
+      case 2: conditionalsResult += "Tuesday\n"; break;
+      case 3: conditionalsResult += "Wednesday\n"; break;
+      default: conditionalsResult += "Other day\n";
+    }
+    document.getElementById("conditionalsOutput").textContent = conditionalsResult;
+
+    // 3. Looping Statements
+    let loopsResult = "";
+
+    loopsResult += "For loop:\n";
+    for (let i = 1; i <= 5; i++) {
+      loopsResult += `  i = ${i}\n`;
+    }
+
+    loopsResult += "\nWhile loop:\n";
+    let j = 1;
+    while (j <= 3) {
+      loopsResult += `  j = ${j}\n`;
+      j++;
+    }
+
+    loopsResult += "\nDo-while loop:\n";
+    let k = 1;
+    do {
+      loopsResult += `  k = ${k}\n`;
+      k++;
+    } while (k <= 2);
+
+    document.getElementById("loopsOutput").textContent = loopsResult;
+  </script>
+
+</body>
+</html>
