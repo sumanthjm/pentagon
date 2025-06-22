@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        .nav-bar {
+            height: 75px;
+            background-color: black;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .content {
+            height: 400px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background-image: linear-gradient(to right,#5F8B4C ,#F8ED8C);
+            transition: background-color 0.5s ease;
+        }
+
+        #bike, #auto, #car {
+            height: 300px;
+            width: 300px;
+            background-color: aquamarine;
+            box-shadow: 0px 0px 15px black;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #bike:hover, #auto:hover, #car:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 25px black;
+        }
+
+        #bike1, #auto1, #car1 {
+            background-size: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-in {
+            height: 80px;
+            background-image: linear-gradient(to right,#5F8B4C ,#F8ED8C);
+            position: sticky;
+            top: 75px;
+            z-index: 999;
+        }
+
+        .inputs {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        #in1, #in2, #in3 {
+            position: relative;
+            top: 15px;
+            width: 300px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        #in1:focus, #in2:focus, #in3:focus {
+            outline: none;
+            box-shadow: 0px 0px 10px black;
+            transform: scale(1.02);
+        }
+
+        .nav-btn {
+            height: 80px;
+            background-image: linear-gradient(to right,#5F8B4C ,#F8ED8C);
+            position: sticky;
+            top: 155px;
+            z-index: 998;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        #bt1, #bt2, #bt3 {
+            position: relative;
+            top: 15px;
+            width: 300px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #bt1:hover, #bt2:hover, #bt3:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+
+        .extra {
+            height: 100px;
+            background-image: linear-gradient(to right,#5F8B4C ,#F8ED8C);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <img src="https://s3-ap-southeast-1.amazonaws.com/ola-prod-website/ola-white-logo.svg" alt="" height="70px">
+    </div>
+
+    <div class="content">
+        <div id="bike">
+            <img id="bike1" src="https://cdni.autocarindia.com/ExtraImages/20230731040400_ola_s1_air.jpg" alt="" height="300px" width="300px">
+        </div>
+        <div id="auto">
+            <img id="auto1" src="http://bsmedia.business-standard.com/_media/bs/img/article/2016-04/13/full/1460531843-6558.jpg" alt="" height="300px" width="300px">
+        </div>
+        <div id="car">
+            <img id="car1" src="https://www.oneindia.com/img/2018/09/03-1451805501-olacabs-taxi-1536511379.jpg" alt="" height="300px" width="300px">
+        </div>
+    </div>
+
+    <div class="nav-in">
+        <div class="inputs">
+            <input id="in1" type="text" placeholder="Enter KM">
+            <input id="in2" type="text" placeholder="Enter KM">
+            <input id="in3" type="text" placeholder="Enter KM">
+        </div>
+    </div>
+
+    <div class="nav-btn">
+        <div class="buttons">
+            <button id="bt1">GO</button>
+            <button id="bt2">Go</button>
+            <button id="bt3">GO</button>
+        </div>
+    </div>
+
+    <div class="extra"></div>
+</body>
+</html>
