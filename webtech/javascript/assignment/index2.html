@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript Programs</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      color: #fff;
+      animation: fadeRotateIn 1s ease-out forwards;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 36px;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px #00000066;
+      transform: scale(0.8);
+      animation: scaleUp 0.8s ease-out forwards;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      backdrop-filter: blur(8px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform: perspective(800px) rotateX(5deg);
+    }
+
+    .section:hover {
+      transform: perspective(800px) rotateX(0deg) scale(1.03);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input[type="number"], input[type="text"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 8px #ffffff99;
+      transform: scale(1.03);
+    }
+
+    button {
+      background-color: #00c6ff;
+      background-image: linear-gradient(to right, #0072ff, #00c6ff);
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 5px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    button:hover {
+      transform: scale(1.1) rotate(-1deg);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+    }
+
+    span, pre {
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 10px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      white-space: pre-wrap;
+      transform: scale(0.9) translateY(20px);
+      opacity: 0;
+      transition: all 0.4s ease-in-out;
+    }
+
+    span.show, pre.show {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Animations */
+    @keyframes fadeRotateIn {
+      0% {
+        opacity: 0;
+        transform: rotateY(10deg) translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes scaleUp {
+      to {
+        transform: scale(1);
+      }
+    }
+
+     #chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s infinite;
+    z-index: 1000;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  /* Chat Window */
+  #chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: #111;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00000088;
+    overflow: hidden;
+    flex-direction: column;
+    font-family: sans-serif;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  #chatbot-header {
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #chatbot-header img {
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  #chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #1c1c1c;
+    color: #eee;
+    font-size: 14px;
+  }
+
+  #chatbot-input {
+    display: flex;
+    border-top: 1px solid #333;
+  }
+
+  #chatbot-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+    background: #222;
+    color: white;
+  }
+
+  #chatbot-input button {
+    background: #0072ff;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  #chatbot-input button:hover {
+    background: #0051d4;
+  }
+
+  .user-msg, .bot-msg {
+    margin: 8px 0;
+    padding: 6px 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    line-height: 1.3;
+  }
+
+  .user-msg {
+    background: #0072ff;
+    color: white;
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .bot-msg {
+    background: #444;
+    color: white;
+    text-align: left;
+  }
+    
+  </style>
+</head>
+<body>
+
+  <h1>✨ JavaScript Mini Programs</h1>
+
+  <!-- Sections (same as before) -->
+  <div class="section">
+    <label>Even or Odd</label>
+    <input type="number" id="evenInput">
+    <button onclick="checkEven()">Check</button>
+    <span id="evenResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Prime or Not</label>
+    <input type="number" id="primeInput">
+    <button onclick="checkPrime()">Check</button>
+    <span id="primeResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Armstrong Number</label>
+    <input type="number" id="armstrongInput">
+    <button onclick="checkArmstrong()">Check</button>
+    <span id="armstrongResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Leap Year</label>
+    <input type="number" id="leapInput">
+    <button onclick="checkLeap()">Check</button>
+    <span id="leapResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Palindrome</label>
+    <input type="text" id="palindromeInput">
+    <button onclick="checkPalindrome()">Check</button>
+    <span id="palindromeResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Greatest of 2 Numbers</label>
+    <input type="number" id="g2a">
+    <input type="number" id="g2b">
+    <button onclick="greatestOf2()">Check</button>
+    <span id="g2Result"></span>
+  </div>
+
+  <div class="section">
+    <label>Greatest of 3 Numbers</label>
+    <input type="number" id="g3a">
+    <input type="number" id="g3b">
+    <input type="number" id="g3c">
+    <button onclick="greatestOf3()">Check</button>
+    <span id="g3Result"></span>
+  </div>
+
+  <div class="section">
+    <label>Swap Without Temp</label>
+    <input type="number" id="swapA">
+    <input type="number" id="swapB">
+    <button onclick="swap()">Swap</button>
+    <span id="swapResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Factorial</label>
+    <input type="number" id="factInput">
+    <button onclick="getFactorial()">Calculate</button>
+    <span id="factResult"></span>
+  </div>
+
+  <div class="section">
+    <label>Fibonacci Series (n terms)</label>
+    <input type="number" id="fibInput">
+    <button onclick="getFibonacci()">Generate</button>
+    <pre id="fibResult"></pre>
+  </div>
+
+  <div class="section">
+    <label>Square Pattern (n × n)</label>
+    <input type="number" id="squareInput">
+    <button onclick="drawSquare()">Draw</button>
+    <pre id="squareResult"></pre>
+  </div>
+  
+</div>
+
+<div id="chatbot-button" onclick="toggleChatbot()">
+  💬 ChatBot
+</div>
+
+<!-- ChatBot Window -->
+<div id="chatbot-window">
+  <div id="chatbot-header">
+    Chat with GPT
+    <a href="https://chat.openai.com" target="_blank" title="Open ChatGPT"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" width="20" height="20" /></a>
+    <span onclick="toggleChatbot()" style="cursor:pointer;">✖</span>
+  </div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input">
+    <input type="text" id="chatInput" placeholder="Ask something..." />
+    <button onclick="sendChat()">Send</button>
+  </div>
+</div>
+
+  <script>
+    const animateResult = (id, msg) => {
+      const el = document.getElementById(id);
+      el.classList.remove('show');
+      el.innerText = msg;
+      setTimeout(() => el.classList.add('show'), 50);
+    };
+
+    const checkEven = () => {
+      let num = +document.getElementById('evenInput').value;
+      animateResult('evenResult', num % 2 === 0 ? "✅ Even" : "❌ Odd");
+    };
+
+    const checkPrime = () => {
+      let num = +document.getElementById('primeInput').value;
+      if (num <= 1) return animateResult('primeResult', "❌ Not Prime");
+      for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return animateResult('primeResult', "❌ Not Prime");
+      }
+      animateResult('primeResult', "✅ Prime");
+    };
+
+    const checkArmstrong = () => {
+      let num = +document.getElementById('armstrongInput').value;
+      let digits = num.toString().length;
+      let sum = 0, temp = num;
+      while (temp > 0) {
+        let rem = temp % 10;
+        sum += rem ** digits;
+        temp = Math.floor(temp / 10);
+      }
+      animateResult('armstrongResult', sum === num ? "✅ Armstrong" : "❌ Not Armstrong");
+    };
+
+    const checkLeap = () => {
+      let year = +document.getElementById('leapInput').value;
+      let leap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+      animateResult('leapResult', leap ? "✅ Leap Year" : "❌ Not Leap Year");
+    };
+
+    const checkPalindrome = () => {
+      let str = document.getElementById('palindromeInput').value;
+      let rev = str.split('').reverse().join('');
+      animateResult('palindromeResult', str === rev ? "✅ Palindrome" : "❌ Not Palindrome");
+    };
+
+    const greatestOf2 = () => {
+      let a = +document.getElementById('g2a').value;
+      let b = +document.getElementById('g2b').value;
+      animateResult('g2Result', "✅ Greatest: " + (a > b ? a : b));
+    };
+
+    const greatestOf3 = () => {
+      let a = +document.getElementById('g3a').value;
+      let b = +document.getElementById('g3b').value;
+      let c = +document.getElementById('g3c').value;
+      animateResult('g3Result', "✅ Greatest: " + Math.max(a, b, c));
+    };
+
+    const swap = () => {
+      let a = +document.getElementById('swapA').value;
+      let b = +document.getElementById('swapB').value;
+      a = a + b;
+      b = a - b;
+      a = a - b;
+      animateResult('swapResult', `✅ Swapped → a = ${a}, b = ${b}`);
+    };
+
+    const getFactorial = () => {
+      let n = +document.getElementById('factInput').value;
+      let f = 1;
+      for (let i = 1; i <= n; i++) f *= i;
+      animateResult('factResult', "✅ Factorial: " + f);
+    };
+
+    const getFibonacci = () => {
+      let n = +document.getElementById('fibInput').value;
+      let a = 0, b = 1, res = [a];
+      if (n > 1) res.push(b);
+      for (let i = 2; i < n; i++) {
+        let next = a + b;
+        res.push(next);
+        a = b;
+        b = next;
+      }
+      animateResult('fibResult', res.join(', '));
+    };
+
+    const drawSquare = () => {
+      let n = +document.getElementById('squareInput').value;
+      let pattern = '';
+      for (let i = 0; i < n; i++) {
+        pattern += '* '.repeat(n).trim() + '\n';
+      }
+      animateResult('squareResult', pattern);
+    };
+    const chatBox = document.getElementById("chat-box");
+
+  function handleChat() {
+    const input = document.getElementById("userInput");
+    const msg = input.value.trim();
+    if (msg === "") return;
+
+    appendChat("user", msg);
+    input.value = "";
+
+    // Simulated bot response
+    setTimeout(() => {
+      let response = getBotReply(msg.toLowerCase());
+      appendChat("bot", response);
+    }, 600);
+  }
+
+  function appendChat(sender, text) {
+    const div = document.createElement("div");
+    div.className = sender;
+    div.textContent = text;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function toggleChatbot() {
+    const botWindow = document.getElementById("chatbot-window");
+    botWindow.style.display = botWindow.style.display === "flex" ? "none" : "flex";
+  }
+
+  function sendChat() {
+    const input = document.getElementById("chatInput");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    appendMessage("user", msg);
+    input.value = "";
+
+    setTimeout(() => {
+      appendMessage("bot", generateBotResponse(msg));
+    }, 600);
+  }
+
+  function appendMessage(sender, text) {
+    const msgDiv = document.createElement("div");
+    msgDiv.className = sender === "user" ? "user-msg" : "bot-msg";
+    msgDiv.innerText = text;
+    document.getElementById("chatbot-messages").appendChild(msgDiv);
+    document.getElementById("chatbot-messages").scrollTop = document.getElementById("chatbot-messages").scrollHeight;
+  }
+
+  function generateBotResponse(userInput) {
+    const msg = userInput.toLowerCase();
+    if (msg.includes("hello") || msg.includes("hi")) {
+      return "Hello! How can I assist you today?";
+    } else if (msg.includes("prime")) {
+      return "To check prime, divide by numbers up to √n.";
+    } else if (msg.includes("author") || msg.includes("your name")) {
+      return "I’m a demo ChatBot, styled like ChatGPT!";
+    } else if (msg.includes("thank")) {
+      return "You're welcome!";
+    } else {
+      return "Try asking about JavaScript programs or visit ChatGPT → chat.openai.com.";
+    }
+  }
+
+  
+  </script>
+</body>
+</html>

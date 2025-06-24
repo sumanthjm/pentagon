@@ -40,16 +40,48 @@ AND sal<(select sal from emps where fname='JAHNAVI');
 where fname like '_A%' AND fname like '%A_'
 AND sal<(select sal from emps where fname='JAHNAVI');
                 
+-- to display details of an emp if the emps are acting as coustomer for theire company and hired after ajun but as famale 
+select * from emps
+where cid is not null and doj>(select doj from emps 
+								where fname='ARJUN') and gender!='F';
+
+-- to display fname and lname as full name alonge with salary ,job and lid if the emp 
+-- is working in location same as suresh location and getting more than priya  
+select CONCAT(fname, ' ', lname) AS full_name,sal,job,lid 
+from emps
+where LID=(SELECT LID FROM EMPS
+			WHERE fname='SURESH') and sal>(select sal 
+											from emps where fname='PRIYA');
                 
+-- details of an emp who are getting 3rd maximum salary
+
+select * from emps
+where sal=(select distinct sal
+from emps 
+order by sal desc
+limit 2,1);
+
+-- TO DAISPLAY EMPS ARE ELDER THAN PRIYAS
+select * from emps
+where dob<(select dob 
+		from emps where fname='PRIYA');
+	
+-- CASE 2
+-- when ever data to be display from one table and condition given for another table we use subquery 
+-- 	
+
+
+
+-- 1] to display kiran city 
+select city from locations
+where lid=(select lid from emps 
+			where fname='KIRAN');
+
+-- 2]  details of empyoyee those living in state ranjastan
+select * from emps
+where lid=(select lid from locations where state='RAJASTHAN');
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+-- 3] CITY AND STATE OF COUSTOMER ROHITH SHARMA
+select city ,state from locations
+where lid=(select lid from customers
+			where name='ROHIT SHARMA'); 
