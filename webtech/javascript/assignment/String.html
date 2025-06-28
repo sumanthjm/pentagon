@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    javascript
+
+
+
+
+    <script>
+        
+// const name = "   sumanth";
+// const color = "blue";
+
+// const formattedName = name.trim().charAt(0).toUpperCase() + name.trim().slice(1).toLowerCase();
+// const upperColor = color.toUpperCase();
+// const message = `Hey ${formattedName}! I heard your favorite color is ${upperColor}. Nice choice!`;
+
+// console.log(message);
+        
+
+
+
+
+
+const name = "   sumanth";
+const color = "blue";
+
+// Basic formatting
+const trimmedName = name.trim();
+const formattedName = trimmedName.charAt(0).toUpperCase() + trimmedName.slice(1).toLowerCase();
+const upperColor = color.toUpperCase();
+
+// Extra string operations
+const reversedName = trimmedName.split('').reverse().join('');
+const nameLength = trimmedName.length;
+const includesLetterU = trimmedName.includes('u');
+const replacedColor = color.replace('blue', 'green');
+const fancyPattern = "*".repeat(trimmedName.length);
+
+// Output
+console.log(`Hey ${formattedName}! I heard your favorite color is ${upperColor}.`);
+console.log(`Did you know your name in reverse is "${reversedName}"?`);
+console.log(`Your name has ${nameLength} characters.`);
+console.log(`Does your name include the letter 'u'? ${includesLetterU}`);
+console.log(`Just for fun, let's pretend your favorite color is actually ${replacedColor.toUpperCase()}!`);
+console.log(`Here's a fun pattern based on your name length: ${fancyPattern}`);
+
+
+
+
+
+    </script>
+</body>
+</html>

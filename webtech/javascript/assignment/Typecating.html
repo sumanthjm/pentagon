@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // ===============================
+// 1. String Conversion
+// ===============================
+let num = 123;
+let bool = true;
+let nullVal = null;
+let undef;
+let big = 9999999999999999n;
+
+// Explicit to String
+console.log(String(num));      // "123"
+console.log(String(bool));     // "true"
+console.log(String(nullVal));  // "null"
+console.log(String(undef));    // "undefined"
+console.log(String(big));      // "9999999999999999"
+
+// Implicit to String (via + operator with string)
+console.log("Value: " + num);     // "Value: 123"
+console.log("Bool is " + bool);   // "Bool is true"
+
+// ===============================
+// 2. Number Conversion
+// ===============================
+let str = "456";
+let str2 = "123abc";
+let falseVal = false;
+let trueVal = true;
+
+// Explicit to Number
+console.log(Number(str));     // 456
+console.log(Number(falseVal)); // 0
+console.log(Number(trueVal));  // 1
+console.log(Number(null));     // 0
+console.log(Number(undefined)); // NaN
+console.log(Number(str2));     // NaN
+
+// Implicit to Number
+console.log("5" * 2); // 10
+console.log("10" - 1); // 9
+console.log("5" + 1); // "51" (string concatenation)
+
+// ===============================
+// 3. Boolean Conversion
+// ===============================
+console.log(Boolean(0));         // false
+console.log(Boolean(1));         // true
+console.log(Boolean(""));        // false
+console.log(Boolean("hello"));   // true
+console.log(Boolean(null));      // false
+console.log(Boolean(undefined)); // false
+console.log(Boolean(NaN));       // false
+
+// ===============================
+// 4. BigInt Conversion
+// ===============================
+let bigFromNum = BigInt(123); // from number
+let bigFromStr = BigInt("9007199254740991");
+console.log(bigFromNum);  // 123n
+console.log(bigFromStr);  // 9007199254740991n
+
+// Note: Cannot convert float to BigInt
+// BigInt(10.5); // ❌ TypeError
+
+// ===============================
+// 5. Null & Undefined (Edge Case)
+// ===============================
+console.log(Number(null));      // 0
+console.log(Number(undefined)); // NaN
+console.log(String(null));      // "null"
+console.log(String(undefined)); // "undefined"
+console.log(Boolean(null));     // false
+console.log(Boolean(undefined));// false
+
+// ===============================
+// 6. Symbol (Cannot convert to Number or String)
+// ===============================
+let sym = Symbol("desc");
+
+try {
+    console.log("Symbol: " + sym); // ❌ TypeError
+} catch (e) {
+    console.log("Cannot convert Symbol to string implicitly:", e.message);
+}
+
+console.log(String(sym)); // ✔️ "Symbol(desc)"
+// Number(sym); // ❌ TypeError
+    </script>
+</body>
+</html>

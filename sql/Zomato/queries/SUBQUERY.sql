@@ -85,3 +85,23 @@ where lid=(select lid from locations where state='RAJASTHAN');
 select city ,state from locations
 where lid=(select lid from customers
 			where name='ROHIT SHARMA'); 
+
+-- 4]to display details of an coustomer who are living in chennai or jaipur city
+select * from customers
+where lid in(select lid from locations where CITY in('CHENNAI','JAIPUR'));
+
+select lid from locations 
+where CITY in ('CHENNAI','JAIPUR');
+
+
+
+
+
+
+
+
+
+
+
+
+

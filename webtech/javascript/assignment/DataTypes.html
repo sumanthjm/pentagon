@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+<script>
+// ===========================================
+//            Primitive Data Types
+// ===========================================
+
+// String
+let str = "Hello, JavaScript!";
+console.log("String:", str);
+
+// Number
+let num = 42;
+console.log("Number:", num);
+
+// BigInt
+let bigInt = 1234567890123456789012345678901234567890n;
+console.log("BigInt:", bigInt);
+
+// Boolean
+let isAvailable = true;
+console.log("Boolean:", isAvailable);
+
+// Undefined
+let notDefined;
+console.log("Undefined:", notDefined);
+
+// Null
+let empty = null;
+console.log("Null:", empty);
+
+// Symbol
+let sym = Symbol("unique");
+console.log("Symbol:", sym);
+
+// ===========================================
+//            Non-Primitive (Reference)
+// ===========================================
+
+// Object
+let person = { name: "Alice", age: 30 };
+console.log("Object:", person);
+
+// Array
+let fruits = ["apple", "banana", "cherry"];
+console.log("Array:", fruits);
+
+// Function
+function greet(name) {
+    return "Hello, " + name;
+}
+console.log("Function:", greet("World"));
+
+// Date
+let now = new Date();
+console.log("Date:", now);
+
+// RegExp
+let regex = /abc/i;
+console.log("RegExp:", regex);
+
+// Map
+let map = new Map();
+map.set("key1", "value1");
+map.set("key2", "value2");
+console.log("Map:", map);
+
+// Set
+let set = new Set();
+set.add(1);
+set.add(2);
+set.add(2); // Duplicate won't be added
+console.log("Set:", set);
+
+// WeakMap
+let weakMap = new WeakMap();
+let obj1 = {};
+weakMap.set(obj1, "WeakMap value");
+console.log("WeakMap (not enumerable): value set");
+
+// WeakSet
+let weakSet = new WeakSet();
+let obj2 = {};
+weakSet.add(obj2);
+console.log("WeakSet (not enumerable): value added");
+
+// Typed Array
+let int8 = new Int8Array([10, 20, 30]);
+console.log("TypedArray (Int8Array):", int8);
+
+// ===========================================
+// Type checking (typeof or constructor)
+// ===========================================
+console.log("Type of str:", typeof str);
+console.log("Type of num:", typeof num);
+console.log("Type of bigInt:", typeof bigInt);
+console.log("Type of isAvailable:", typeof isAvailable);
+console.log("Type of notDefined:", typeof notDefined);
+console.log("Type of empty:", typeof empty); // returns "object" (a quirk)
+console.log("Type of sym:", typeof sym);
+console.log("Type of person:", typeof person);
+console.log("Type of fruits:", Array.isArray(fruits) ? "array" : typeof fruits);
+console.log("Type of greet:", typeof greet);
+console.log("Type of now:", now.constructor.name);
+console.log("Type of regex:", regex.constructor.name);
+console.log("Type of map:", map.constructor.name);
+console.log("Type of set:", set.constructor.name);
+console.log("Type of int8:", int8.constructor.name);
+
+
+
+</script>
+</body>
+</html>
