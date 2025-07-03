@@ -1,45 +1,58 @@
-//package com.MysqlLoader;
-//import java.sql.Connection;
-//import java.sql.Statement;
-//import java.sql.SQLException;
-//import java.sql.DriverManager;
-//import java.sql.ResultSet;
-//
-//import com.mysql.cj.jdbc.Driver;
-//public class DbLoader 
-//{
-//
-//	public void m() {
-//		try {
-//			System.out.println(Class.forName("com.mysql.cj.jdbc.Driver"));
-//			System.out.println("Loaded and Registered");
-//		}catch(ClassNotFoundException e) 
-//		{
-//		System.out.println("Not able to load");
-//	    }
-//					}
-//	public void mysqlConnect() {
-//		String userName="root";
-//		String password="root";
-//		try {
-//			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jcbc",userName,password);
-//			System.out.println("connected to Mysql");
-//			System.out.println(con);
-//			Statement stmt=con.createStatement();
-//			System.out.println(stmt);
-//			
-////			String query="SELECT * FROM student where age>18";
+package com.MysqlLoader;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.util.Scanner;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+
+
+import com.mysql.cj.jdbc.Driver;
+public class DbLoader 
+{
+
+	public void m() {
+		try {
+			System.out.println(Class.forName("com.mysql.cj.jdbc.Driver"));
+			System.out.println("Loaded and Registered");
+		}catch(ClassNotFoundException e) 
+		{
+		System.out.println("Not able to load");
+	    }
+					}
+	public void mysqlConnect() {
+		String userName="root";
+		String password="root";
+		Scanner sc=new Scanner(System.in);
+		String email=sc.next();
+		String pass=sc.next();
+		try {
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo",userName,password);
+			System.out.println("connected to Mysql");
+			System.out.println(con);
+			Statement stmt=con.createStatement();
+			System.out.println(stmt);
+			
+			String query="SELECT * FROM user_accounts where email='"+email+"'AND pass='"+pass+"'";
+//			String query="SELECT * FROM student where age>18";
 //			String query="SELECT sid FROM student where age>20";
-////			String query="insert into student values(1,\"sumanth\",18)";
-//			
-////			Boolean se= stmt.execute(query);
+//			String query="insert into student values(1,\"sumanth\",18)";
+			
+			Boolean se= stmt.execute(query);
+			
+			if(se==true) {
+				System.out.println("login");
+			}
+			else {
+				System.out.println("not login");
+			}
 //			ResultSet se= stmt.executeQuery(query);
-////			int se2= stmt.executeUpdate(query);
-//			
-////			System.out.println(se);
+//			int se2= stmt.executeUpdate(query);
+			
+//			System.out.println(se);
 //			System.out.println("Query executed succesfully");
-////			int eid=se.getInt("eid");
-////			System.out.println(eid);
+//			int eid=se.getInt("eid");
+//			System.out.println(eid);
 //			 System.out.println("SID\tSName\t\tAge");
 //			while (se.next()) {
 //                int id = se.getInt("sid");
@@ -47,21 +60,21 @@
 //                int age = se.getInt("age");
 //                System.out.println(id + "\t" + name + "\t\t" + age);
 //            }
-//			
-//		}catch(SQLException e) 
-//		{
-//		System.out.println("Not able to connect");
-//	    }
-//	}
-//}
-//
-//class Main{
-//	public static void main(String[] args) {
-//		DbLoader db=new DbLoader();
-//		db.m();
-//		db.mysqlConnect();
-//	}
-//}
+			
+		}catch(SQLException e) 
+		{
+		System.out.println("Not able to connect");
+	    }
+	}
+}
+
+class Main{
+	public static void main(String[] args) {
+		DbLoader db=new DbLoader();
+		db.m();
+		db.mysqlConnect();
+	}
+}
 
 
 

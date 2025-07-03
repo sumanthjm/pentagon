@@ -1,0 +1,50 @@
+-- DCL (DATA CONTROL LANGUAGE)
+-- 1.GRANT
+-- 2.REVOKE
+
+-- 1. GRANT
+-- ---------
+-- IT IS USED TO GRANT/PROVIDE PERMISSION OF THE   DATA FROM ONE USER TO ANOTHER USER
+-- SYNTAX:
+
+
+-- TO VIEW ALL THE USERS PRESENT IN MY SQL
+-- ----------------------------------------
+-- STEP 1:
+-- USE INFORMATION_SCHEMA;
+-- EX
+
+-- STEP 2:
+-- SELECT * FROM USER_ATTRIBUTES;
+
+-- TO VIEW ACTIVE USER PRESENT IN MTSQL
+-- -------------------------------------
+-- SELECT USER();
+
+-- TO CREATE USER IN MYSQL----------------------------------------------------------
+-- ------------------------
+-- SYNTAX:
+-- CREATE USER 'USERNAME'@'HOSTNAME'IDENTIFIED BY 'PASSWORD';
+-- CREATE USER 'PENTAGON'@'LOCALHOST'IDENTIFIED BY 'SQL';
+
+
+-- TO DELETE USER IN MYSQL----------------------------------------------------------
+-- ------------------------
+-- SYNTAX:
+-- DROP USER 'USERNAME'@'HOSTNAME';
+-- DROP USER 'PENTAGON'@'LOCALHOST';
+-- USE INFORMATION_SCHEMA;
+-- SHOW TABLES;
+-- select * FROM USER_ATTRIBUTES;
+-- CREATE USER 'PENTAGON'@'LOCALHOST'IDENTIFIED BY 'SQL';
+
+-- TO USE MYSQL IN CMD USE 
+-- -----------------------
+-- MYSQL -U USERNAME -P
+
+use zomato;
+grant select on emps to 'PENTAGON'@'LOCALHOST';
+
+GRANT ALL privileges ON ZOMATO.* TO 'PENTAGON'@'LOCALHOST';-- TOGRANT ENTIRE DB
+REVOKE ALL PRIVILEGES ON ZOMATO.* FROM 'PENTAGON'@'LOCALHOST';
+ 
