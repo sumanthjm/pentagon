@@ -17,7 +17,7 @@
 -- STEP 2:
 -- SELECT * FROM USER_ATTRIBUTES;
 
--- TO VIEW ACTIVE USER PRESENT IN MTSQL
+-- TO VIEW ACTIVE USER PRESENT IN MYSQL
 -- -------------------------------------
 -- SELECT USER();
 

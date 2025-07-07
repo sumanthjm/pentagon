@@ -23,13 +23,14 @@ public class MysqlConnection {
 			String userName="root";
 			String password="root";
 			try {
-//				Connection con=DriverManager.getConnection
-//	("jdbc:mysql://localhost:3306/demo",userName,password);
+				Connection con=DriverManager.getConnection
+	("jdbc:mysql://localhost:3306/demo",userName,password);
 				
-		Connection con=DriverManager.getConnection
-	("jdbc:mysql://localhost:3306/zomato",userName,password);
+//		Connection con=DriverManager.getConnection
+//	("jdbc:mysql://localhost:3306/zomato",userName,password);
 				System.out.println("connected to Mysql");
 				System.out.println(con);
+//				Statement stmt=con.createStatement();
 				Statement stmt=con.createStatement();
 				return stmt;
 			}catch(SQLException e) 

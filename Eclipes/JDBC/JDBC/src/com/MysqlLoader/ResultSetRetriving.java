@@ -19,9 +19,9 @@ public class ResultSetRetriving {
 	System.out.println("---------------------");
 	
 	System.out.println("enyter name");
-	String name=sc.next();
+	String name=sc.nextLine();
 	System.out.println("enter pass");
-	String pass=sc.next();
+	String pass=sc.nextLine();
 
 //	String query="select * from user_accounts where(name='"+name+"' and pass='"+pass+"')";
 //	String query="select * from user_accounts";

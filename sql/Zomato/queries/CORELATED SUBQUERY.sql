@@ -1,0 +1,18 @@
+
+-- ---------------CORELATED SUBQUERY  GO IF QUERY HAS (THEIR WORD )
+-- -------------------------------------------
+-- > HERE BOTH OUTER QUERY AND INNER QUERY MUTUALLY DEPENDS ON EACH OTHER
+-- > FOR EACH ROW OF OUTER QUERY TABLE INNER QI=UERY WILL BE EXECUTED 
+
+-- 1] FNAME SALARY MORETHAN AVG SAL OF SAM JOB ROLE
+select e1.fname from emps e1  
+WHERE  e1.sal>(SELECT AVG(E2.SAL) AS AVG_IS
+					FROM EMPS E2
+					WHERE E1.JOB=E2.JOB);
+                    
+-- 2]WQTD FNAME OF EMPLOYEE WHO ARE YOUNGER THAN THEIR MANAGERS?? 
+select e1.fname from emps e1  
+WHERE  e1.DOB>(SELECT E2.DOB
+					FROM EMPS E2
+					WHERE E1.MGR=E2.EID);
+                    

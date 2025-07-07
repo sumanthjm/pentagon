@@ -1,0 +1,332 @@
+
+
+CREATE DATABASE IF NOT EXISTS bankmsys;
+USE bankmsys;
+
+CREATE TABLE IF NOT EXISTS users (
+    accountNumber INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    phone BIGINT,
+    dob DATE,
+    balance INT DEFAULT 0,
+    password VARCHAR(100)
+);
+
+
+
+
+
+------------------------------------------------------------------------------------
+
+package com.bankmsys;
+import java.sql.*;
+
+public class DbUtil {
+    public static Connection getConnection() throws Exception {
+        String url = "jdbc:mysql://localhost:3306/bankmsys";
+        String user = "root";
+        String pass = "root";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(url, user, pass);
+    }
+}
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
+
+package com.bankmsys;
+import java.sql.Date;
+
+public class CreateAcc {
+    private int accountNumber;
+    private String name;
+    private String email;
+    private long phone;
+    private Date dob;
+    private int balance;
+    private String password;
+
+    // Getters & Setters
+    public int getAccountNumber() { return accountNumber; }
+    public void setAccountNumber(int accountNumber) { this.accountNumber = accountNumber; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public long getPhone() { return phone; }
+    public void setPhone(long phone) { this.phone = phone; }
+
+    public Date getDob() { return dob; }
+    public void setDob(Date dob) { this.dob = dob; }
+
+    public int getBalance() { return balance; }
+    public void setBalance(int balance) { this.balance = balance; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+}
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
+
+
+package com.bankmsys;
+import java.util.*;
+import java.sql.*;
+
+public class Welcome {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean exit = false;
+
+        while (!exit) {
+            System.out.println("\n--- Welcome to GPT Bank ---");
+            System.out.println("1] Create Account");
+            System.out.println("2] Login");
+            System.out.println("3] Exit");
+            System.out.print("Enter your choice: ");
+            int option = sc.nextInt();
+            sc.nextLine(); // clear buffer
+
+            switch (option) {
+                case 1:
+                    try {
+                        CreateAcc acc = new CreateAcc();
+
+                        System.out.print("Enter your name: ");
+                        acc.setName(sc.nextLine());
+
+                        System.out.print("Enter your email: ");
+                        acc.setEmail(sc.nextLine());
+
+                        System.out.print("Enter your phone: ");
+                        acc.setPhone(sc.nextLong());
+
+                        System.out.print("Enter your DOB (yyyy-mm-dd): ");
+                        acc.setDob(Date.valueOf(sc.next()));
+
+                        sc.nextLine(); // clear newline
+                        System.out.print("Create password: ");
+                        acc.setPassword(sc.nextLine());
+
+                        Connection con = DbUtil.getConnection();
+                        PreparedStatement ps = con.prepareStatement(
+                            "INSERT INTO users(name, email, phone, dob, password) VALUES (?, ?, ?, ?, ?)",
+                            Statement.RETURN_GENERATED_KEYS
+                        );
+                        ps.setString(1, acc.getName());
+                        ps.setString(2, acc.getEmail());
+                        ps.setLong(3, acc.getPhone());
+                        ps.setDate(4, acc.getDob());
+                        ps.setString(5, acc.getPassword());
+
+                        int result = ps.executeUpdate();
+                        if (result > 0) {
+                            ResultSet rs = ps.getGeneratedKeys();
+                            if (rs.next()) {
+                                acc.setAccountNumber(rs.getInt(1));
+                                System.out.println("Account created successfully!");
+                                System.out.println("Your Account Number is: " + acc.getAccountNumber());
+                            }
+                        }
+                        con.close();
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+
+                case 2:
+                    try {
+                        System.out.print("Enter email: ");
+                        String email = sc.nextLine();
+                        System.out.print("Enter password: ");
+                        String password = sc.nextLine();
+
+                        Connection con = DbUtil.getConnection();
+                        PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE email=? AND password=?");
+                        ps.setString(1, email);
+                        ps.setString(2, password);
+                        ResultSet rs = ps.executeQuery();
+
+                        if (rs.next()) {
+                            CreateAcc acc = new CreateAcc();
+                            acc.setAccountNumber(rs.getInt("accountNumber"));
+                            acc.setName(rs.getString("name"));
+                            acc.setEmail(rs.getString("email"));
+                            acc.setPhone(rs.getLong("phone"));
+                            acc.setDob(rs.getDate("dob"));
+                            acc.setBalance(rs.getInt("balance"));
+                            acc.setPassword(rs.getString("password"));
+
+                            System.out.println("Login Successful.");
+                            new Login().login(acc);
+                        } else {
+                            System.out.println("Invalid credentials.");
+                        }
+                        con.close();
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                    break;
+
+                case 3:
+                    exit = true;
+                    System.out.println("Thanks for using GPT Bank!");
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+        sc.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+package com.bankmsys;
+import java.util.*;
+import java.sql.*;
+
+public class Login {
+    public void login(CreateAcc acc) {
+        Scanner sc = new Scanner(System.in);
+        boolean exit1 = false;
+
+        while (!exit1) {
+            System.out.println("\n--- Account Menu ---");
+            System.out.println("1] View Account Details");
+            System.out.println("2] Deposit");
+            System.out.println("3] Withdraw");
+            System.out.println("4] Update Phone Number");
+            System.out.println("5] Update Password");
+            System.out.println("6] Logout");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            try (Connection con = DbUtil.getConnection()) {
+                switch (choice) {
+                    case 1:
+                        System.out.println("Account No     : " + acc.getAccountNumber());
+                        System.out.println("Name           : " + acc.getName());
+                        System.out.println("Email          : " + acc.getEmail());
+                        System.out.println("Phone          : " + acc.getPhone());
+                        System.out.println("DOB            : " + acc.getDob());
+                        System.out.println("Balance        : ₹" + acc.getBalance());
+                        break;
+
+                    case 2:
+                        System.out.print("Enter deposit amount: ");
+                        int depAmt = sc.nextInt();
+                        acc.setBalance(acc.getBalance() + depAmt);
+                        updateBalance(con, acc);
+                        System.out.println("Deposited. New Balance: ₹" + acc.getBalance());
+                        break;
+
+                    case 3:
+                        System.out.print("Enter withdrawal amount: ");
+                        int wdAmt = sc.nextInt();
+                        if (wdAmt <= acc.getBalance()) {
+                            acc.setBalance(acc.getBalance() - wdAmt);
+                            updateBalance(con, acc);
+                            System.out.println("Withdrawn. New Balance: ₹" + acc.getBalance());
+                        } else {
+                            System.out.println("Insufficient funds.");
+                        }
+                        break;
+
+                    case 4:
+                        System.out.print("Enter new phone: ");
+                        long newPhone = sc.nextLong();
+                        acc.setPhone(newPhone);
+                        PreparedStatement ps1 = con.prepareStatement("UPDATE users SET phone=? WHERE accountNumber=?");
+                        ps1.setLong(1, newPhone);
+                        ps1.setInt(2, acc.getAccountNumber());
+                        ps1.executeUpdate();
+                        System.out.println("Phone updated.");
+                        break;
+
+                    case 5:
+                        System.out.print("Enter current password: ");
+                        String current = sc.nextLine();
+                        if (acc.getPassword().equals(current)) {
+                            System.out.print("Enter new password: ");
+                            String newPwd = sc.nextLine();
+                            acc.setPassword(newPwd);
+                            PreparedStatement ps2 = con.prepareStatement("UPDATE users SET password=? WHERE accountNumber=?");
+                            ps2.setString(1, newPwd);
+                            ps2.setInt(2, acc.getAccountNumber());
+                            ps2.executeUpdate();
+                            System.out.println("Password updated.");
+                        } else {
+                            System.out.println("Incorrect password.");
+                        }
+                        break;
+
+                    case 6:
+                        exit1 = true;
+                        System.out.println("Logged out.");
+                        break;
+
+                    default:
+                        System.out.println("Invalid choice.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    private void updateBalance(Connection con, CreateAcc acc) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("UPDATE users SET balance=? WHERE accountNumber=?");
+        ps.setInt(1, acc.getBalance());
+        ps.setInt(2, acc.getAccountNumber());
+        ps.executeUpdate();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
